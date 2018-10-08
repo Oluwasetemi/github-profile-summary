@@ -19,6 +19,7 @@ class HomeStats extends Component {
     this.prCount = this.prCount.bind(this);
     this.issuesCount = this.issuesCount.bind(this);
     this.starsCount = this.starsCount.bind(this);
+    this.topLanguage = this.topLanguage.bind(this);
   }
 
   userTopLanguage = () => {
@@ -103,6 +104,14 @@ class HomeStats extends Component {
     if (this.props.userData && this.props.userData.starredRepositories) {
       const { totalCount } = this.props.userData.starredRepositories;
       return totalCount !== null ? totalCount : '?';
+    }
+    return '?';
+  }
+
+  topLanguage = () => {
+    if (this.props.userData && this.props.userData.topLanguage) {
+      const { topLanguage } = this.props.userData;
+      return topLanguage !== null ? topLanguage : '?';
     }
     return '?';
   }

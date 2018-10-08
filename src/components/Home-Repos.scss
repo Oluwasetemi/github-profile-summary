@@ -13,11 +13,13 @@
     cursor: pointer;
 
     &-icon {
-      position: relative;
-      top: 2px;
       margin-left: 0.5rem;
       margin-right: 1rem;
 
+      &.stay {
+        position: relative;
+        top: 2px;
+      }
       svg {
         fill: $white;
       }
@@ -30,6 +32,12 @@
       &:link, &:visited, &:hover, &:active {
         color: lighten($primary, 15);
       }
+    }
+    &-stars {
+      padding-top: 0.25rem;
+      margin-bottom: 4px;
+      margin-left: 0.5rem;
+      color: $white;
     }
     &-updated {
       margin-left: auto;
