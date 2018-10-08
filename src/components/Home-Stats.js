@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './Home-Stats.css';
 import { IconContext } from 'react-icons';
-import { GoGist, GoRepo, GoIssueOpened, GoGitPullRequest, GoStar } from 'react-icons/go';
+import { GoGist, GoRepo, GoIssueOpened, GoGitPullRequest, GoStar, GoTerminal } from 'react-icons/go';
 import { FaHourglassStart, FaArrowAltCircleRight, FaArrowAltCircleLeft } from 'react-icons/fa';
 
 const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
@@ -10,6 +10,7 @@ class HomeStats extends Component {
   constructor(props) {
     super(props);
 
+    this.userTopLanguage = this.userTopLanguage.bind(this);
     this.userCreated = this.userCreated.bind(this);
     this.publicReposCount = this.publicReposCount.bind(this);
     this.publicGistsCount = this.publicGistsCount.bind(this);
@@ -18,6 +19,14 @@ class HomeStats extends Component {
     this.prCount = this.prCount.bind(this);
     this.issuesCount = this.issuesCount.bind(this);
     this.starsCount = this.starsCount.bind(this);
+  }
+
+  userTopLanguage = () => {
+    if (this.props.userData && this.props.userData.topLanguage) {
+      const { topLanguage } = this.props.userData;
+      return topLanguage !== null ? topLanguage : '?';
+    }
+    return '?'
   }
 
   userCreated = () => {
@@ -205,6 +214,18 @@ class HomeStats extends Component {
             Stars:
             {' '}
             <b>{this.starsCount()}</b>
+          </span>
+          <span className="Stats-language">
+            <div className="Stats-icon">
+              <IconContext.Provider value={ { color: '#fff' } }>
+                <div>
+                  <GoTerminal />
+                </div>
+              </IconContext.Provider>
+            </div>
+            Top Language:
+            {' '}
+            <b>{this.topLanguage()}</b>
           </span>
         </div>
       </div>
